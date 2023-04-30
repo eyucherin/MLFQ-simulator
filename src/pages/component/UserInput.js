@@ -8,12 +8,14 @@ const UserInput = (props) => {
       </div>
       <input
         id="arrival_time"
-        type="text"
+        type="number"
+        placeholder="Arrival Time"
         className="w-[33.33%] rounded-full mx-[3%] my-[1%] shadow-[2px 2px 2px 2px rgba(0, 0, 0, 0.1)] drop-shadow-md py-2 px-5"
       ></input>
       <input
         id="burst_time"
-        type="text"
+        type="number"
+        placeholder="Burst Time"
         className="w-[33.33%]  rounded-full ml-[3%] my-[1%] mr-[5%] shadow-[2px 2px 2px 2px rgba(0, 0, 0, 0.1)] drop-shadow-md py-2 px-5"
       ></input>
 
