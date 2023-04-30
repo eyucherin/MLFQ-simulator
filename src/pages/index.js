@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useRef } from "react";
+import UserInput from "./component/UserInput";
 
 export default function Home() {
   const scrollToRef = useRef(null);
@@ -64,7 +65,11 @@ export default function Home() {
         </div>
         <div className="text-base w-96 pt-2">Provide your processes input</div>
         <div className="flex flex-col">
-          <div className="flex justify-center pt-14">Input components</div>
+          <div className="flex flex-col justify-center pt-14">
+            <UserInput name="Process A" />
+            <UserInput name="Process B" />
+            <UserInput name="Process C" />
+          </div>
           <button
             className="flex justify-center pt-12"
             onClick={handlePlusBtnClick}
