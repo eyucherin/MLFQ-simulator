@@ -88,11 +88,22 @@ export default function Home() {
               height={58}
             />
           </button>
+
+          <a href = "#Visualization"
+          className="flex justify-center pt-12"
+        >
+          <Image
+            src="/runBtn.png"
+            alt="Simulate button"
+            width={180}
+            height={84}
+          />
+        </a>
         </div>
       </div>
 
       <div className="pt-48 px-48">
-        <div className="text-5xl font-black">Visualization</div>
+        <div className="text-5xl font-black" id = "Visualization">Visualization</div>
         <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
         <div className=" py-24">
           <div>Queues</div>
