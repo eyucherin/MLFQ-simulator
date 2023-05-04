@@ -69,7 +69,7 @@ export default function Home() {
             <div className = "flex flex-row mb-[1.5%] w-[100%] ">
               <div class="basis-1/3 font-bold"></div>
               <div class="basis-1/6 font-bold px-[4%]">Arrival Time</div>
-              <div class="basis-1/6 font-bold px-[4%]">IO Burst</div>
+              <div class="basis-1/6 font-bold px-[5%]">IO Burst</div>
               <div class="basis-1/6 font-bold px-[4%]">CPU Burst</div>
               <div class="basis-1/6 font-bold px-[4%]">Total Time</div>
             </div>
