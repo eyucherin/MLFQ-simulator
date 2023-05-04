@@ -66,6 +66,13 @@ export default function Home() {
         <div className="text-base w-96 pt-2">Provide your processes input</div>
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-14">
+            <div className = "flex flex-row mb-[1.5%] w-[100%] ">
+              <div class="basis-1/3 font-bold"></div>
+              <div class="basis-1/6 font-bold px-[4%]">Arrival Time</div>
+              <div class="basis-1/6 font-bold px-[4%]">IO Burst</div>
+              <div class="basis-1/6 font-bold px-[4%]">CPU Burst</div>
+              <div class="basis-1/6 font-bold px-[4%]">Total Time</div>
+            </div>
             <UserInput name="Process A" />
             <UserInput name="Process B" />
             <UserInput name="Process C" />
