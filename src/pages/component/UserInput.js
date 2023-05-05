@@ -13,28 +13,28 @@ const UserInput = (props) => {
   const dispatch = useDispatch();
 
   let handleArrivalChange = (event) => {
-    const currentVal = event.currentTarget.value;
+    const currentVal = parseInt(event.currentTarget.value, 10);
     dispatch(setArrivalTime({ id: props.name, arrivalTime: currentVal }));
   }
 
   let handleCPUBurstChange = (event) => {
-    const currentVal = event.currentTarget.value;
+    const currentVal = parseInt(event.currentTarget.value, 10);
     dispatch(setcpuBurst({id: props.name, cpuBurst: currentVal}))
   }
 
   let handleIOBurstChange = (event) => {
-    const currentVal = event.currentTarget.value;
+    const currentVal = parseInt(event.currentTarget.value, 10);
     dispatch(setioBurst({id: props.name, ioBurst: currentVal}))
   }
 
   let handleTotalTimeChange = (event) => {
-    const currentVal = event.currentTarget.value;
+    const currentVal = parseInt(event.currentTarget.value, 10);
     dispatch(setTotalTime({id: props.name, totalTime: currentVal}))
 
   }
 
   let handleCPUVarianceChange = (event) => {
-    const currentVal = event.currentTarget.value;
+    const currentVal = parseInt(event.currentTarget.value, 10);
     dispatch(setcpuVariance({id: props.name, cpuVariance: currentVal}))
   }
 

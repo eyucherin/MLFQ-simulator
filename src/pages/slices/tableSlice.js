@@ -3,8 +3,33 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
     currentTime : 0,
-    priorityBoostTime: 10, 
-    listOfQueues :[]
+    priorityBoostTime: 10,
+    listOfQueues :[
+        {
+            processes:[],
+            quantum: 0,
+            currentTime: 0,
+            priority: 0,
+          },
+          {
+            processes:[],
+            quantum: 0,
+            currentTime: 0,
+            priority: 1,
+          },
+          {
+            processes:[],
+            quantum: 0,
+            currentTime: 0,
+            priority: 2,
+          },
+          {
+            processes:[],
+            quantum: 0,
+            currentTime: 0,
+            priority: 3,
+          },
+    ]
 }
 
 export const tableSlice = createSlice({
@@ -19,8 +44,11 @@ export const tableSlice = createSlice({
         },
         setListOfQueues: (state, action) => {
             state.listOfQueues = action.payload;
-        }
-    }  
+        },
+        addProcess: (state, action) => {
+            state.listOfQueues.find(q => q.priority === action.payload.priority).processes.push(action.payload);
+        },
+    } 
 })
 
 export const getTableState = (state) => state.table;

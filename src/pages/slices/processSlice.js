@@ -56,6 +56,12 @@ const processSlice = createSlice({
         if (process) {
             process.cpuVariance = action.payload.cpuVariance;
         }
+    },
+    getProcess: (state, action) => {
+        const process = state.find(p => p.id === action.payload.id);
+        if (process) {
+            return process;
+        }
     }
 }
 });
