@@ -5,6 +5,7 @@ import UserInput from "./component/UserInput";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addProcess } from "./slices/processSlice";
+import Table from "./component/Table";
 
 export default function Home() {
   const scrollToRef = useRef(null);
@@ -128,10 +129,11 @@ export default function Home() {
       <div className="pt-48 px-48">
         <div className="text-5xl font-black" id = "Visualization">Visualization</div>
         <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
-        <div className=" py-24">
-          <div>Queues</div>
+        <div className="my-[4%]">
+          <Table />
+          {/* <div>Queues</div>
           <div>processes info</div>
-          <div>cpu usage</div>
+          <div>cpu usage</div> */}
         </div>
       </div>
     </div>
