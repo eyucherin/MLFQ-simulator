@@ -1,35 +1,41 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setArrivalTime,setcpuBurst,setioBurst,settotalTime,setcpuVariance } from "../processSlice";
+import { addProcess,
+  setArrivalTime,
+  setcpuBurst,
+  setioBurst,
+  setTotalTime,
+  setcpuVariance } from "../slices/processSlice";
 
 const UserInput = (props) => {
-  const process = useSelector((state) => state.process);
+
   const dispatch = useDispatch();
 
   let handleArrivalChange = (event) => {
     const currentVal = event.currentTarget.value;
-    dispatch(setArrivalTime(currentVal));
+    dispatch(setArrivalTime({ id: props.name, arrivalTime: currentVal }));
   }
 
   let handleCPUBurstChange = (event) => {
     const currentVal = event.currentTarget.value;
-    dispatch(setcpuBurst(currentVal));
+    dispatch(setcpuBurst({id: props.name, cpuBurst: currentVal}))
   }
 
   let handleIOBurstChange = (event) => {
     const currentVal = event.currentTarget.value;
-    dispatch(setioBurst(currentVal));
+    dispatch(setioBurst({id: props.name, ioBurst: currentVal}))
   }
 
   let handleTotalTimeChange = (event) => {
     const currentVal = event.currentTarget.value;
-    dispatch(settotalTime(currentVal));
+    dispatch(setTotalTime({id: props.name, totalTime: currentVal}))
+
   }
 
   let handleCPUVarianceChange = (event) => {
     const currentVal = event.currentTarget.value;
-    dispatch(setcpuVariance(currentVal));
+    dispatch(setcpuVariance({id: props.name, cpuVariance: currentVal}))
   }
 
   return (

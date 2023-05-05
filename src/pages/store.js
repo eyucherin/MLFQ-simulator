@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import processSlice from "./processSlice";
-import tableSlice from "./tableSlice";
-import queueSlice from "./queueSlice";
+
+import processSlice from "./slices/processSlice";
+import tableSlice from "./slices/tableSlice";
+import queueSlice from "./slices/queueSlice";
 
 export const store = configureStore({
     reducer: {

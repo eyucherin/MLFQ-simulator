@@ -3,13 +3,14 @@ import Image from "next/image";
 import { useState,useRef } from "react";
 import UserInput from "./component/UserInput";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addProcess } from "./slices/processSlice";
 
 export default function Home() {
   const scrollToRef = useRef(null);
   const [num,setNum] = useState(1);
   const [processList,setProcessList] = useState([]);
-
-  const queue = useSelector((state) => state.queue);
+  const dispatch = useDispatch();
 
   const handleSimulateBtnClick = () => {
     if (scrollToRef.current) {
@@ -23,8 +24,21 @@ export default function Home() {
   };
 
   const handlePlusBtnClick = () => {
-    setNum(num+1);
-    setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
+    if (num < 10){
+      setNum(num+1);
+      setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
+      const newProcess = {
+        id: num+1,
+        arrivalTime:0,
+        cpuBurst: 0,
+        ioBurst:0,
+        totalTime: 0,
+        cpuVariance: 0,
+        currentTime: 0,
+        priorityLevel: 0,
+      };
+      dispatch(addProcess(newProcess));
+    }
   };
 
   return (
@@ -82,7 +96,7 @@ export default function Home() {
               <div class="basis-1/6 font-bold pl-[4%]">Total Time</div>
               <div class="basis-1/6 font-bold pl-[3.5%]">Variance</div>
             </div>
-            <UserInput name="1" />
+            <UserInput name={1} />
             {processList}
           </div>
           <button
