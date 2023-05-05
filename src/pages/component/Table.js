@@ -2,7 +2,7 @@ import React from 'react'
 
 const Table = () => {
   return (
-    <div>
+    <div class = "mb-[4%]">
         <div class = "mb-5">Current Time</div>
 
         <div class = "flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">

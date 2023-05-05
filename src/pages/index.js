@@ -2,16 +2,35 @@
 import Image from "next/image";
 import { useState,useRef } from "react";
 import UserInput from "./component/UserInput";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
-import { addProcess } from "./slices/processSlice";
+import { addProcess,getProcessState,getColor } from "./slices/processSlice";
 import Table from "./component/Table";
+import ProcessInfo from "./component/ProcessInfo";
+
+
 
 export default function Home() {
+  const processId = 1; // Replace with the actual process id you're looking for
+  const color = useSelector((state) => {
+    const process = state.processes.find(p => p.id === processId);
+    return process ? process.color : null;
+  });
   const scrollToRef = useRef(null);
   const [num,setNum] = useState(1);
   const [processList,setProcessList] = useState([]);
   const dispatch = useDispatch();
+  const colors = [
+    "#F9F871",
+    "#F08A5D",
+    "#56BD66",
+    "#5666BD",
+    "#BD569A",
+    "#BD5666",
+    "#66BD56",
+    "#9056BD",
+    "#BD9056",
+  ]
 
   const handleSimulateBtnClick = () => {
     if (scrollToRef.current) {
@@ -30,6 +49,7 @@ export default function Home() {
       setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
       const newProcess = {
         id: num+1,
+        color: colors[num-1],
         arrivalTime:0,
         cpuBurst: 0,
         ioBurst:0,
@@ -131,11 +151,13 @@ export default function Home() {
         <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
         <div className="my-[4%]">
           <Table />
+          <ProcessInfo/>
           {/* <div>Queues</div>
           <div>processes info</div>
           <div>cpu usage</div> */}
         </div>
       </div>
+
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = [
     {
       id: 1,
+      color: "#FF0000",
       arrivalTime:0,
       cpuBurst: 0,
       ioBurst:0,
@@ -15,56 +16,62 @@ const initialState = [
 ];
 
 const processSlice = createSlice({
-  name: 'processes',
-  initialState,
-  reducers: {
-    addProcess: (state, action) => {
-      state.push(action.payload);
-    },
-    setArrivalTime: (state, action) => {
-      const process = state.find(p => p.id === action.payload.id);
-      if (process) {
-        process.arrivalTime = action.payload.arrivalTime;
+    name: 'processes',
+    initialState,
+    reducers: {
+      addProcess: (state, action) => {
+        state.push(action.payload);
+      },
+      setArrivalTime: (state, action) => {
+        const process = state.find(p => p.id === action.payload.id);
+        if (process) {
+          process.arrivalTime = action.payload.arrivalTime;
+        }
+      },
+      setcpuBurst: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              process.cpuBurst = action.payload.cpuBurst;
+          }
+      },
+      setioBurst: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              process.ioBurst = action.payload.ioBurst;
+          }
+      },
+      setStartTime: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              process.startTime = action.payload.startTime;
+          }
+      },
+      setTotalTime: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              process.totalTime = action.payload.totalTime;
+          }
+      },
+      setcpuVariance: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              process.cpuVariance = action.payload.cpuVariance;
+          }
+      },
+      getProcess: (state, action) => {
+          const process = state.find(p => p.id === action.payload.id);
+          if (process) {
+              return process;
+          }
+      },
+        getColor : (state, processId) => {
+        const process = state.find(p => p.id === action.payload.id);
+        return process.color;
       }
     },
-    setcpuBurst: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            process.cpuBurst = action.payload.cpuBurst;
-        }
-    },
-    setioBurst: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            process.ioBurst = action.payload.ioBurst;
-        }
-    },
-    setStartTime: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            process.startTime = action.payload.startTime;
-        }
-    },
-    setTotalTime: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            process.totalTime = action.payload.totalTime;
-        }
-    },
-    setcpuVariance: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            process.cpuVariance = action.payload.cpuVariance;
-        }
-    },
-    getProcess: (state, action) => {
-        const process = state.find(p => p.id === action.payload.id);
-        if (process) {
-            return process;
-        }
-    }
-}
-});
+  });
+
+export const getProcessState = (state) => state.processes;
 
 export const {
   addProcess,
@@ -73,7 +80,9 @@ export const {
   setioBurst,
   setStartTime,
   setTotalTime,
-  setcpuVariance
+  setcpuVariance,
+  getProcess,
+  getColor
 } = processSlice.actions;
 
 export default processSlice.reducer;

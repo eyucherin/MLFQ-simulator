@@ -1,14 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addProcess,
-  setArrivalTime,
-  setcpuBurst,
-  setioBurst,
-  setTotalTime,
-  setcpuVariance } from "../slices/processSlice";
+import { addProcess, setArrivalTime, setcpuBurst, setioBurst, setTotalTime, setcpuVariance, getProcess } from "../slices/processSlice";
+
 
 const UserInput = (props) => {
+
 
   const dispatch = useDispatch();
 
@@ -39,6 +36,7 @@ const UserInput = (props) => {
   }
 
   return (
+    <div>   
     <form className=" flex mb-4 w-[100%] rounded-full bg-[#F8F3FE] shadow-[4px 4px 10px 5px rgba(0, 0, 0, 0.1)] drop-shadow-lg">
       <div className="text-xl font-bold w-[15%]  mx-[3%] my-[1%] pl-[2%] p-2">
         Process {props.name}
@@ -53,6 +51,7 @@ const UserInput = (props) => {
 
       {/* input with text */}
     </form>
+    </div>
   );
 };
 
