@@ -1,9 +1,16 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Image from "next/image";
-import { useRef } from "react";
+import { useState,useRef } from "react";
 import UserInput from "./component/UserInput";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const scrollToRef = useRef(null);
+  const [num,setNum] = useState(1);
+  const [processList,setProcessList] = useState([]);
+
+  const queue = useSelector((state) => state.queue);
+
   const handleSimulateBtnClick = () => {
     if (scrollToRef.current) {
       window.scrollTo({
@@ -16,7 +23,8 @@ export default function Home() {
   };
 
   const handlePlusBtnClick = () => {
-    console.log("Plus Btn clicked");
+    setNum(num+1);
+    setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
   };
 
   return (
@@ -67,15 +75,15 @@ export default function Home() {
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-14">
             <div className = "flex flex-row mb-[1.5%] w-[100%] ">
-              <div class="basis-1/3 font-bold"></div>
-              <div class="basis-1/6 font-bold px-[4%]">Arrival Time</div>
-              <div class="basis-1/6 font-bold px-[5%]">IO Burst</div>
-              <div class="basis-1/6 font-bold px-[4%]">CPU Burst</div>
-              <div class="basis-1/6 font-bold px-[4%]">Total Time</div>
+              <div class="basis-1/6 font-bold px-[4%]"></div>
+              <div class="basis-1/6 font-bold pl-[6%]">Arrival Time</div>
+              <div class="basis-1/6 font-bold pl-[7%]">IO Burst</div>
+              <div class="basis-1/6 font-bold pl-[5%]">CPU Burst</div>
+              <div class="basis-1/6 font-bold pl-[4%]">Total Time</div>
+              <div class="basis-1/6 font-bold pl-[3.5%]">Variance</div>
             </div>
-            <UserInput name="Process A" />
-            <UserInput name="Process B" />
-            <UserInput name="Process C" />
+            <UserInput name="1" />
+            {processList}
           </div>
           <button
             className="flex justify-center pt-12"
@@ -88,9 +96,9 @@ export default function Home() {
               height={58}
             />
           </button>
-
+        <div className = "flex justify-center">
           <a href = "#Visualization"
-          className="flex justify-center pt-12"
+          className="mt-12"
         >
           <Image
             src="/runBtn.png"
@@ -99,6 +107,7 @@ export default function Home() {
             height={84}
           />
         </a>
+        </div>
         </div>
       </div>
 
