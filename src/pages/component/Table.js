@@ -1,8 +1,6 @@
 import React,{useState,useEffect} from 'react'
 
 const Table = (props) => {
-    let [currentTime,setCurrentTime] = useState(0);
-    let [priorityBoostTime,setPriorityBoostTime] = useState(10);
 
     let [queue1,setQueue1] = useState([1]);
     let [queue2,setQueue2] = useState([]);
@@ -10,9 +8,9 @@ const Table = (props) => {
     let [queue4,setQueue4] = useState([]);
 
 
-    useEffect(()=>{
+    useEffect(() => {},[])
 
-    },[])
+
 
   return (
     <div class = "ml-[4%] mb-[4%] w-[100%]">

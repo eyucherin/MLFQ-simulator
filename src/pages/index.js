@@ -7,17 +7,17 @@ import { useDispatch } from "react-redux";
 import { addProcess,getProcessState,getColor, setcpuBurst, setCurrentTime } from "./slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
-import { addToFirstQueue } from "./slices/tableSlice";
 
 
 
 export default function Home() {
   const dispatch = useDispatch();
   const processes = useSelector(state => state.processes);
-  const table = useSelector(state => state.table);
   const scrollToRef = useRef(null);
   const [num,setNum] = useState(1);
   const [processList,setProcessList] = useState([]);
+
+
   const colors = [
     "#F9F871",
     "#F08A5D",
@@ -45,6 +45,7 @@ export default function Home() {
     if (num < 10){
       setNum(num+1);
       setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
+
       const newProcess = {
         id: num+1,
         color: colors[num-1],
@@ -61,15 +62,6 @@ export default function Home() {
   };
 
   const handleSimulateBtn = () => {
-    for(let i = 0; i < num ; i++){
-      if(!table.listOfQueues[0].processes.includes(processes[i])){
-        dispatch(addToFirstQueue(processes[i]));
-        dispatch(setcpuBurst({id:processes[i].id,cpuBurst:processes[i].cpuBurst - 1}))
-        dispatch(setCurrentTime({id:processes[i].id,currentTime:processes[i].currentTime + 1}))
-      }
-    }
-   
-    // console.log(table.listOfQueues[0].processes);
   }
 
 
