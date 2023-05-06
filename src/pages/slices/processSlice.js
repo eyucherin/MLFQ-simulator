@@ -4,13 +4,15 @@ const initialState = [
   {
     id: 1,
     color: "#FF0000",
-    arrivalTime: 0,
     cpuBurst: 0,
     ioBurst: 0,
     totalTime: 0,
     cpuVariance: 0,
-    currentTime: 0,
-    priorityLevel: 0,
+    ioVariance: 0,
+    isFinished: false,
+    isRunnable: false,
+    unBlockedAt: 0,
+    remainingCPUTime: 0,
   },
 ];
 
