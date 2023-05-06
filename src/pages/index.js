@@ -14,8 +14,14 @@ export default function Home() {
   const dispatch = useDispatch();
   const processes = useSelector(state => state.processes);
   const scrollToRef = useRef(null);
+  const [runSimulation,setRunSimulation] = useState(false);
   const [num,setNum] = useState(1);
-  const [processList,setProcessList] = useState([]);
+  const [processList,setProcessList] = useState([0]);
+
+
+  useEffect(() => {
+    console.log(runSimulation);
+  },[runSimulation]);
 
 
   const colors = [
@@ -41,27 +47,40 @@ export default function Home() {
     }
   };
 
-  const handlePlusBtnClick = () => {
-    if (num < 10){
-      setNum(num+1);
-      setProcessList(processList.concat(<UserInput key={num} name={num+1} />));
+  // useEffect(() => {
+  //   for(let i=0;i<processList.length;i++){
+  //     processList[i] = <UserInput key={i} name={i+1} canRun={runSimulation} />
+  //   }
+  // },[runSimulation]);
 
-      const newProcess = {
+  const handlePlusBtnClick = () => {
+    if (num < 10 && !runSimulation){
+      setNum(num+1);
+      setProcessList(processList.concat(num));
+      // setProcessList(processList.concat(<UserInput key={num} name={num+1} canRun={runSimulation} />));
+      const newProcess ={
         id: num+1,
         color: colors[num-1],
         arrivalTime:0,
         cpuBurst: 0,
-        ioBurst:0,
-        totalTime: 0,
+        ioBurst: 0,
         cpuVariance: 0,
-        currentTime: 0,
-        priorityLevel: 0,
+        ioVariance: 0,
+
+        totalTime: 0,
+        isFinished: false,
+        isRunnable: false,
+        unBlockedAt: 0,
+        remainingCPUTime: 0,
+        priority:0,
       };
       dispatch(addProcess(newProcess));
     }
   };
 
   const handleSimulateBtn = () => {
+    setRunSimulation(true);
+    console.log("Simulate!");
   }
 
 
@@ -113,15 +132,21 @@ export default function Home() {
         <div className="flex flex-col">
           <div className="flex flex-col justify-center pt-14">
             <div className = "flex flex-row mb-[1.5%] w-[100%] ">
-              <div class="basis-1/6 font-bold px-[4%]"></div>
-              <div class="basis-1/6 font-bold pl-[6%]">Arrival Time</div>
-              <div class="basis-1/6 font-bold pl-[7%]">IO Burst</div>
-              <div class="basis-1/6 font-bold pl-[5%]">CPU Burst</div>
-              <div class="basis-1/6 font-bold pl-[4%]">Total Time</div>
-              <div class="basis-1/6 font-bold pl-[3.5%]">Variance</div>
+              <div class="basis-1/6 text-sm font-bold px-[4%]"></div>
+              <div class="basis-1/6 text-sm font-bold pl-[6%]">Arrival Time</div>
+              <div class="basis-1/6 text-sm font-bold pl-[7%]">IO Burst</div>
+              <div class="basis-1/6 text-sm font-bold pl-[5%]">CPU Burst</div>
+              <div class="basis-1/6 text-sm font-bold pl-[4%]">Total Time</div>
+              <div class="basis-1/6 text-sm font-bold pl-[3.5%]">Variance</div>
+              <div class="basis-1/6 text-sm font-bold pl-[1.8%]">
+                IO Variance
+              </div>
             </div>
-            <UserInput name={1} />
-            {processList}
+            {/* <UserInput key={0} name={1} canRun={runSimulation} />
+            {processList} */}
+            {processList.map((process) => (
+              <UserInput key={process} name={process+1} canRun={runSimulation} />
+            ))}
           </div>
           <button
             className="flex justify-center pt-12"
