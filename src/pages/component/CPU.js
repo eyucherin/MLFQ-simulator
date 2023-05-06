@@ -18,7 +18,6 @@ export const CPU = (props) => {
 
 
 
-
   return (
     <div className="relative flex justify-center align-middle w-[100%] border-t border-b h-[8vh] my-10">
         <div className="absolute  left-[17%] w-[83%] h-[50%] top-[25%] flex ">

@@ -61,6 +61,7 @@ const Table = (props) => {
   },[props,processes])
 
 
+
   return (
     <div class="ml-[4%] mb-[4%] w-[100%]">
       <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
