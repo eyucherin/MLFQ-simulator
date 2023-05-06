@@ -1,17 +1,15 @@
-import { useEffect } from "react";
-
-export const Simulate = (processes) => {
+export const simulate = (processes) => {
   // Processes is an array of objects, sorted by arrival time
   // processes: [{arrivalTime: 0, processId: 1}, {arrivalTime: 0, processId: 3}, {arrivalTime: 1, processId: 2}}]
-  const [readyQueues, setReadyQueues] = useState(processes);
 
-  const [queue1, setQueue1] = useState([]);
-  const [queue2, setQueue2] = useState([]);
-  const [queue3, setQueue3] = useState([]);
-  const [queue4, setQueue4] = useState([]);
-  const [queue5, setQueue5] = useState([]);
-  const [runningProcesses, setRunningProcesses] = useState([]);
-  const [history, setHistory] = useState([]);
+  let readyQueues = [];
+  let queue1 = [];
+  let queue2 = [];
+  let queue3 = [];
+  let queue4 = [];
+  let queue5 = [];
+  let runningProcesses = [];
+  let history = [];
 
   let currentTime = 0;
   let quantum = 1;
@@ -105,5 +103,16 @@ export const Simulate = (processes) => {
     //                  append to the end of the queue1
     //              empty the queue
   }
-  return history;
+  return [
+    { processId: 1, queueId: 1, startTime: 0 },
+    { processId: 2, queueId: 1, startTime: 1 },
+    { processId: 1, queueId: 2, startTime: 2 },
+    { processId: 3, queueId: 1, startTime: 3 },
+    { processId: 2, queueId: 2, startTime: 4 },
+    { processId: 2, queueId: 3, startTime: 5 },
+    { processId: 2, queueId: 4, startTime: 6 },
+    { processId: 2, queueId: 5, startTime: 7 },
+    { processId: 3, queueId: 2, startTime: 8 },
+  ];
+  //   return history;
 };
