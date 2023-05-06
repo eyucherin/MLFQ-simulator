@@ -8,7 +8,7 @@ import { addProcess } from "./slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
 import { simulate } from "./simulator";
-import { CPU } from "./component/CPU";
+import  CPU  from "./component/CPU";
 
 export default function Home() {
   const dispatch = useDispatch();

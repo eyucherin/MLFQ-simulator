@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { useSelector } from "react-redux";
 
-export const CPU = (props) => {
+const CPU = (props) => {
   const processes = useSelector((state) => state.processes);
   let [cpu, setCpu] = useState([]);
 
@@ -36,3 +36,6 @@ export const CPU = (props) => {
       </div>
   )
 }
+
+
+export default CPU;
