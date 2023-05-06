@@ -81,8 +81,9 @@ export default function Home() {
 
     // run simulator function @params: readyQueues @return: history
     const history = simulate(readyQueues);
-    setHistory(history);
-  };
+      setHistory(history);
+      // console.log("HISTORY",history);
+    };
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-[#E5CAFB] to-[#8A87C1]">
@@ -185,7 +186,7 @@ export default function Home() {
         <div className="my-[2%]">
           <div className="flex ">
             <img src={"priorityArrow.png"} className="h-[41vh] " />
-            <Table processNum={num} />
+            <Table processNum={num} history = {history}/>
           </div>
           <ProcessInfo />
         </div>

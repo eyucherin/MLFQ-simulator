@@ -10,7 +10,6 @@ const UserInput = (props) => {
 
   useEffect(() => {
     console.log("PASSED TO CHILD",props.canRun);
-    console.log(props.name);
   },[props.canRun,props.name]);
 
   let handleArrivalChange = (event) => {
