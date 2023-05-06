@@ -6,9 +6,10 @@ const initialState = [
     color: "#FF0000",
     cpuBurst: 0,
     ioBurst: 0,
-    totalTime: 0,
     cpuVariance: 0,
     ioVariance: 0,
+
+    totalTime: 0,
     isFinished: false,
     isRunnable: false,
     unBlockedAt: 0,
@@ -23,63 +24,35 @@ const processSlice = createSlice({
     addProcess: (state, action) => {
       state.push(action.payload);
     },
-    setArrivalTime: (state, action) => {
-      const process = state.find((p) => p.id === action.payload.id);
-      if (process) {
-        process.arrivalTime = action.payload.arrivalTime;
-      }
-    },
-    setCpuBurst: (state, action) => {
-      const process = state.find((p) => p.id === action.payload.id);
-      if (process) {
-        process.cpuBurst = action.payload.cpuBurst;
-      }
-    },
-    setIoBurst: (state, action) => {
-      const process = state.find((p) => p.id === action.payload.id);
-      if (process) {
-        process.ioBurst = action.payload.ioBurst;
-      }
-    },
-    setStartTime: (state, action) => {
-      const process = state.find((p) => p.id === action.payload.id);
-      if (process) {
-        process.startTime = action.payload.startTime;
-      }
-    },
     setTotalTime: (state, action) => {
       const process = state.find((p) => p.id === action.payload.id);
       if (process) {
         process.totalTime = action.payload.totalTime;
       }
     },
-    setCpuVariance: (state, action) => {
+    setIsFinished: (state, action) => {
       const process = state.find((p) => p.id === action.payload.id);
       if (process) {
-        process.cpuVariance = action.payload.cpuVariance;
+        process.isFinished = action.payload.isFinished;
       }
     },
-    setIoVariance: (state, action) => {
+    setIsRunnable: (state, action) => {
       const process = state.find((p) => p.id === action.payload.id);
       if (process) {
-        process.ioVariance = action.payload.ioVariance;
+        process.isRunnable = action.payload.isRunnable;
       }
     },
-    setCurrentTime: (state, action) => {
+    setUnBlockedAt: (state, action) => {
       const process = state.find((p) => p.id === action.payload.id);
       if (process) {
-        process.currentTime = action.payload.currentTime;
+        process.unBlockedAt = action.payload.unBlockedAt;
       }
     },
-    getProcess: (state, action) => {
+    setRemainingCPUTime: (state, action) => {
       const process = state.find((p) => p.id === action.payload.id);
       if (process) {
-        return process;
+        process.remainingCPUTime = action.payload.remainingCPUTime;
       }
-    },
-    getColor: (state, processId) => {
-      const process = state.find((p) => p.id === action.payload.id);
-      return process.color;
     },
   },
 });
@@ -88,16 +61,11 @@ export const getProcessState = (state) => state.processes;
 
 export const {
   addProcess,
-  setArrivalTime,
-  setCpuBurst,
-  setIoBurst,
-  setStartTime,
   setTotalTime,
-  setCpuVariance,
-  setIoVariance,
-  setCurrentTime,
-  getProcess,
-  getColor,
+  setIsFinished,
+  setIsRunnable,
+  setUnBlockedAt,
+  setRemainingCPUTime,
 } = processSlice.actions;
 
 export default processSlice.reducer;
