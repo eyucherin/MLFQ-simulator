@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {createSlice} from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 
 
 const initialState = {
@@ -48,10 +50,13 @@ export const tableSlice = createSlice({
         addProcess: (state, action) => {
             state.listOfQueues.find(q => q.priority === action.payload.priority).processes.push(action.payload);
         },
-    } 
+        addToFirstQueue: (state, action) => {
+            state.listOfQueues[0].processes.push(action.payload);
+        },
+    }
 })
 
 export const getTableState = (state) => state.table;
 
-export const {setCurrentTime,setPriorityBoostTime,setListOfQueues} = tableSlice.actions;
+export const {setCurrentTime,setPriorityBoostTime,setListOfQueues,addToFirstQueue} = tableSlice.actions;
 export default tableSlice.reducer;

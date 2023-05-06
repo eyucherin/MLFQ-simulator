@@ -1,25 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Image from "next/image";
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
 import UserInput from "./component/UserInput";
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
-import { addProcess,getProcessState,getColor } from "./slices/processSlice";
+import { addProcess,getProcessState,getColor, setcpuBurst, setCurrentTime } from "./slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
+import { addToFirstQueue } from "./slices/tableSlice";
 
 
 
 export default function Home() {
-  const processId = 1; // Replace with the actual process id you're looking for
-  const color = useSelector((state) => {
-    const process = state.processes.find(p => p.id === processId);
-    return process ? process.color : null;
-  });
+  const dispatch = useDispatch();
+  const processes = useSelector(state => state.processes);
+  const table = useSelector(state => state.table);
   const scrollToRef = useRef(null);
   const [num,setNum] = useState(1);
   const [processList,setProcessList] = useState([]);
-  const dispatch = useDispatch();
   const colors = [
     "#F9F871",
     "#F08A5D",
@@ -61,6 +59,19 @@ export default function Home() {
       dispatch(addProcess(newProcess));
     }
   };
+
+  const handleSimulateBtn = () => {
+    for(let i = 0; i < num ; i++){
+      if(!table.listOfQueues[0].processes.includes(processes[i])){
+        dispatch(addToFirstQueue(processes[i]));
+        dispatch(setcpuBurst({id:processes[i].id,cpuBurst:processes[i].cpuBurst - 1}))
+        dispatch(setCurrentTime({id:processes[i].id,currentTime:processes[i].currentTime + 1}))
+      }
+    }
+   
+    // console.log(table.listOfQueues[0].processes);
+  }
+
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-[#E5CAFB] to-[#8A87C1]">
@@ -131,30 +142,29 @@ export default function Home() {
               height={58}
             />
           </button>
-        <div className = "flex justify-center">
-          <a href = "#Visualization"
-          className="mt-12"
-        >
-          <Image
-            src="/runBtn.png"
-            alt="Simulate button"
-            width={180}
-            height={84}
-          />
-        </a>
-        </div>
+        <button className = "flex justify-center" onClick={handleSimulateBtn} >
+          <a href = "#Visualization" className="mt-12">
+            <Image
+              src="/runBtn.png"
+              alt="Simulate button"
+              width={180}
+              height={84}
+            />
+          </a>
+        </button>
         </div>
       </div>
 
       <div className="pt-48 px-48">
         <div className="text-5xl font-black" id = "Visualization">Visualization</div>
         <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
-        <div className="my-[4%]">
-          <Table />
+        <div className = "mt-5">Current Time</div>
+        <div className="my-[2%]">
+          <div className = "flex ">
+            <img src = {"priorityArrow.png"} className = "h-[41vh] "/>
+            <Table processNum = {num}/>
+          </div>
           <ProcessInfo/>
-          {/* <div>Queues</div>
-          <div>processes info</div>
-          <div>cpu usage</div> */}
         </div>
       </div>
 

@@ -12,7 +12,6 @@ const initialState = [
       currentTime: 0,
       priorityLevel: 0,
     }
-
 ];
 
 const processSlice = createSlice({
@@ -58,6 +57,12 @@ const processSlice = createSlice({
               process.cpuVariance = action.payload.cpuVariance;
           }
       },
+      setCurrentTime:(state,action) => {
+            const process = state.find(p => p.id === action.payload.id);
+            if (process) {
+                process.currentTime = action.payload.currentTime;
+            }
+        },
       getProcess: (state, action) => {
           const process = state.find(p => p.id === action.payload.id);
           if (process) {
@@ -81,6 +86,7 @@ export const {
   setStartTime,
   setTotalTime,
   setcpuVariance,
+  setCurrentTime,
   getProcess,
   getColor
 } = processSlice.actions;
