@@ -14,11 +14,9 @@ export const CPU = (props) => {
         };
         cpu.sort((a,b) => (a.startTime > b.startTime) ? 1 : ((b.startTime > a.startTime) ? -1 : 0));
         setCpu(cpu);
-    },[props])
+    },[props,processes])
 
-    useEffect(() =>{
-        console.log(cpu)
-    },[cpu])
+
 
 
   return (

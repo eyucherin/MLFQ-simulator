@@ -58,7 +58,7 @@ const Table = (props) => {
     setQueue4(q4);
     setQueue5(q5);
 
-  },[props])
+  },[props,processes])
 
 
   return (
