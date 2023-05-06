@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -14,26 +12,56 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# MLFQ simulator
+COMSC-322 Operating Systems
+- Professor: James McCauley
+- Students: Elizabeth Yu, Joni Park
+- Website: https://mlfq-simulator-7dwamz0tg-eyucherin.vercel.app/
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<img width="480" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="480" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Introduction
+For our project, we decided to implement a web simulator on MLFQ scheduling. Throughout the semester, we learned about a couple of scheduling methods including SJF, and RR, which offer some benefits but also have certain drawbacks. Unlike many other OS schedulers, MLFQ scheduling, also known as Multilevel feedback queue, not only optimizes Average Turnaround Time and Average Response Time but also prioritizes IO-bound processes over CPU-bound processes. To further examine this scheduler, we decided to use a couple of front-end frameworks and libraries including Next.js, tailwind.css, and redux to create our web interface, which can be found here. 
 
-To learn more about Next.js, take a look at the following resources:
+## What we built
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The scheduler works based on five main rules, which we have incorporated into our implementation:
+1. A process starts in the highest priority queue.
+2. If a process does not finish its time quantum, it is moved to the next lower priority queue.
+3. If a process finishes its time quantum, it remains in the same queue.
+4. A process that completes an IO burst is moved to the previous priority queue.
+5. Periodically, all processes are moved back to the highest priority queue to prevent starvation.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+In our implementation, we used the same time quantum for all the priority queues, which is set to 1 for simplicity. We also created a total of 5 priority queues, with each queue having a lower priority than the one above it. To make the task inputs more dynamic, we incorporated CPU and IO variances for each process.
 
-## Deploy on Vercel
+## How we built
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend
+We used Next.js, an open-source web development framework that is built on top of React, Tailwind CSS to style our simulator, and Redux toolkit to keep track of the state changes that happen in the different processes. As we mentioned above, redux keeps track of all the changes in each process, including the input changes. To prevent the users from making changes to the simulation, once the run simulation button is pressed, the user can no longer manipulate the data. Once we run the simulation, we receive the data and display it in 2 different forms, the MLFQ form and the CPU form to help the users visualize the process for this particular scheduling method. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# MLFQ-simulator
+### Logic
+The main function in our implementation is called ‘simulate’, which accepts an object containing the ready queue and the list of the process objects. First, we initialize several variables, such as the current time, the five priority queues, an array of running processes, a priority boost constant, and a history array that we will return.
+The core of the simulation takes place in a while loop that continues until either all processes have been executed or a pre-defined maximum simulation time has been reached. Within this loop, we perform several tasks:
+1. Add processes from the ready queue to the first priority queue based on their arrival times.
+2. Find the first runnable process in the highest priority queue and execute it for a time unit. If there are no runnable processes, increment the current time to simulate an idle CPU.
+3. Update the remaining CPU time and total time of the executed process, and log the execution history.
+4. Based on the updated times, determine if the process has finished or if it should be moved to a lower priority queue, or if it should go through an IO burst.
+5. Unblock processes that have completed their IO bursts and add them back to the appropriate priority queues.
+6. Perform a priority boost to move all running processes back to the highest priority queue at regular intervals.
+The simulation ends when all processes have been executed or the maximum simulation time has been reached, and the function returns the history of the simulation, which would be the data for drawing processes execution on the queue tables.
+
+## Challenges & key takeaways
+- In the beginning, we did not have the right idea of the scheduling algorithm. We were set on the fact that burst referred to the CPU and IO burst times. Initially, our user inputs only consisted of arrival time, total burst, and total time. With the help of Professor McCauley, we were able to understand the scheduling method more in-depth. 
+- Even after understanding the whole concept of MLFQ, we were debating on what to include for our user inputs. Some questions we asked were, “Should we include the arrival time?”, or “Should we have a separate variance for the IO and CPU?”. After countless discussions, we figured it would make our simulator more interesting if we allow the users to initiate these variables so even if these inputs made the implementation harder, it definitely added more functionality to the scheduler. 
+- We also struggled with the deployment process. There were a couple of errors that appeared during the process which required us to go back to the code and fix them. After revisiting the code a couple of times we were able to get the deployment process working.  
+
+## Future Improvment
+
+- **Real-time animation**: Implement a real-time animation feature that displays the scheduling process as it occurs, making it more engaging and easier to understand. There are two approaches to achieve this: one is to simulate the animation using our existing history data and a JavaScript timer; the other involves a more authentic simulation that draws on the screen as the simulator operates.
+- **Enhanced logic**: Allow users to set custom time quantum values and determine the voodoo boost based on input parameters.
+- **Frontend improvements**: Modularize the queue component for better maintainability and flexibility. Modify the width of the process executions display to be responsive to the overall runtime.
+- **Input validation**: Validate input to ensure that user inputs, such as blocking empty inputs, and validating the sum of total time of all the processes is shorter than our maximum simulation time. Additionally, we can verify that IO and CPU burst times are greater than their respective variances.
+
+### Please let us know if there is any feedback or suggestions!
