@@ -57,7 +57,7 @@ export default function Home() {
 
         totalTime: 0,
         isFinished: false,
-        isRunnable: false,
+        isRunnable: true,
         unBlockedAt: 0,
         remainingCPUTime: 0,
         priority: 0,
@@ -75,11 +75,18 @@ export default function Home() {
         processId: process.id,
       });
     });
+    // Sort readyQueues by arrival time
+    readyQueues.sort((a, b) => a.arrivalTime - b.arrivalTime);
 
     // run simulator function @params: readyQueues @return: history
-    const history = simulate(readyQueues);
-      setHistory(history);
-    };
+    // sort the readyQueues by arrival time
+    const history = simulate({
+      readyQ: readyQueues,
+      processObjects: processes,
+    });
+    setHistory(history);
+    console.log(history);
+  };
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-[#E5CAFB] to-[#8A87C1]">
@@ -130,15 +137,19 @@ export default function Home() {
           <div className="flex flex-col justify-center pt-14">
             <div className="flex flex-row mb-[1.5%] w-[100%] ">
               <div class="basis-1/6 text-sm font-bold px-[4%]"></div>
-              <div class="basis-1/6 text-sm font-bold pl-[6%]">
+              <div class="basis-1/6 text-sm font-bold pl-[7%]">
                 Arrival Time
               </div>
-              <div class="basis-1/6 text-sm font-bold pl-[7%]">IO Burst</div>
               <div class="basis-1/6 text-sm font-bold pl-[5%]">CPU Burst</div>
-              <div class="basis-1/6 text-sm font-bold pl-[4%]">Total Time</div>
-              <div class="basis-1/6 text-sm font-bold pl-[3.5%]">Variance</div>
+              <div class="basis-1/6 text-sm font-bold pl-[4%]">IO Burst</div>
+              <div class="basis-1/6 text-sm font-bold pl-[2.5%]">
+                Total Time
+              </div>
               <div class="basis-1/6 text-sm font-bold pl-[1.8%]">
                 IO Variance
+              </div>
+              <div class="basis-1/6 text-sm font-bold pl-[1%]">
+                CPU Variance
               </div>
             </div>
             {processList.map((process) => (
@@ -177,14 +188,21 @@ export default function Home() {
         <div className="text-5xl font-black" id="Visualization">
           Visualization
         </div>
-        <div className="text-base w-96 pt-2 mb-[3%]">This is how MLFQ works!</div>
+        <div className="text-base w-96 pt-2 mb-[3%]">
+          This is how MLFQ works!
+        </div>
         <div className="my-[2%]">
-          <div className="flex ">
-            <Image alt = "arrow" src={"priorityArrow.png"} className="h-[41vh] " />
-            <Table processNum={num} history = {history}/>
+          <div className="flex mb-7">
+            <Image
+              src="/priorityArrow.png"
+              alt="Vertical arrow"
+              width={60}
+              height={10}
+            />
+            <Table processNum={num} history={history} />
           </div>
           <ProcessInfo />
-          <CPU history = {history}/>
+          <CPU history={history} />
         </div>
       </div>
     </div>
