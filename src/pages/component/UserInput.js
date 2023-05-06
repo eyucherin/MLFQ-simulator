@@ -8,10 +8,6 @@ const UserInput = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("PASSED TO CHILD",props.canRun);
-  },[props.canRun,props.name]);
-
   let handleArrivalChange = (event) => {
     if(!props.canRun){
       const currentVal = parseInt(event.currentTarget.value, 10);

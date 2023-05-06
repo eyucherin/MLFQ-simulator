@@ -61,26 +61,10 @@ const Table = (props) => {
   },[props])
 
 
-  useEffect(()=>{
-    console.log("Queue 1: ", queue1)
-    console.log("Queue 2: ", queue2)
-    console.log("Queue 3: ", queue3)
-    console.log("Queue 4: ", queue4)
-    console.log("Queue 5: ", queue5)
-
-  },[queue1,queue2,queue3,queue4,queue5])
-
-
-  useEffect(() => {
-    for(let i = 0; i < queue1.length; i++){
-        console.log("Process:",processes[queue1[i].processId - 1]);
-    }
-    }, [queue1]);
-
   return (
     <div class="ml-[4%] mb-[4%] w-[100%]">
       <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
-        <div className="absolute border left-[20%] w-[80%] h-[50%] top-[25%] flex">
+        <div className="absolute  left-[20%] w-[80%] h-[50%] top-[25%] flex">
             {queue1.map((process) => (
                 <div
                     key={process.processId}
@@ -99,8 +83,8 @@ const Table = (props) => {
         <div className="basis-1/5 bg-[#]"></div>
       </div>
 
-      <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
-        <div className="absolute border left-[20%] w-[80%] h-[50%] top-[25%] flex">
+      <div className="relative flex justify-center align-middle w-[100%] border-t border-b h-[8vh]">
+        <div className="absolute  left-[20%] w-[80%] h-[50%] top-[25%] flex">
             {queue2.map((process) => (
                 <div
                     key={process.processId}
@@ -120,8 +104,8 @@ const Table = (props) => {
       </div>
 
 
-      <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
-        <div className="absolute border left-[20%] w-[80%] h-[50%] top-[25%] flex">
+      <div className="relative flex justify-center align-middle w-[100%] border-t border-b h-[8vh]">
+        <div className="absolute  left-[20%] w-[80%] h-[50%] top-[25%] flex">
         {queue3.map((process) => (
                 <div
                     key={process.processId}
@@ -140,8 +124,8 @@ const Table = (props) => {
         <div className="basis-1/5 bg-[#]"></div>
       </div>
 
-      <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
-        <div className="absolute border left-[20%] w-[80%] h-[50%] top-[25%] flex">
+      <div className="relative flex justify-center align-middle w-[100%] border-t border-b h-[8vh]">
+        <div className="absolute  left-[20%] w-[80%] h-[50%] top-[25%] flex">
             {queue4.map((process) => (
                 <div
                     key={process.processId}
@@ -160,8 +144,8 @@ const Table = (props) => {
         <div className="basis-1/5 bg-[#]"></div>
       </div>
 
-      <div className="relative flex justify-center align-middle w-[100%] border-t-2 border-b h-[8vh]">
-        <div className="absolute border left-[20%] w-[80%] h-[50%] top-[25%] flex">
+      <div className="relative flex justify-center align-middle w-[100%] border-t border-b-2 h-[8vh]">
+        <div className="absolute  left-[20%] w-[80%] h-[50%] top-[25%] flex">
             {queue5.map((process) => (
                 <div
                     key={process.processId}
