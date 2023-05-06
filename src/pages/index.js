@@ -190,8 +190,13 @@ export default function Home() {
         <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
         <div className="mt-5">Current Time</div>
         <div className="my-[2%]">
-          <div className="flex ">
-            <img src={"priorityArrow.png"} className="h-[41vh] " />
+          <div className="flex mb-7">
+            <Image
+              src="/priorityArrow.png"
+              alt="Vertical arrow"
+              width={60}
+              height={10}
+            />
             <Table processNum={num} />
           </div>
           <ProcessInfo />
