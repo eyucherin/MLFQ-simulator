@@ -7,8 +7,8 @@ import queueSlice from "./slices/queueSlice";
 export const store = configureStore({
     reducer: {
         processes:processSlice,
-        table:tableSlice,
-        queue: queueSlice,
+        // table:tableSlice,
+        // queue: queueSlice,
     },
   });
 
