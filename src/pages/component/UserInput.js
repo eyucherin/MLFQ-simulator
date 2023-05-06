@@ -12,10 +12,7 @@ import {
 const UserInput = (props) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("PASSED TO CHILD", props.canRun);
-    console.log(props.name);
-  }, [props.canRun, props.name]);
+  useEffect(() => {}, [props.canRun, props.name]);
 
   let handleArrivalChange = (event) => {
     if (!props.canRun) {
