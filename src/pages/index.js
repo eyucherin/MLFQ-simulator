@@ -180,7 +180,7 @@ export default function Home() {
         <div className="text-base w-96 pt-2 mb-[3%]">This is how MLFQ works!</div>
         <div className="my-[2%]">
           <div className="flex ">
-            <img src={"priorityArrow.png"} className="h-[41vh] " />
+            <Image alt = "arrow" src={"priorityArrow.png"} className="h-[41vh] " />
             <Table processNum={num} history = {history}/>
           </div>
           <ProcessInfo />
