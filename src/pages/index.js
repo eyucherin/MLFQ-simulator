@@ -8,6 +8,7 @@ import { addProcess } from "./slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
 import { simulate } from "./simulator";
+import { CPU } from "./component/CPU";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -17,10 +18,6 @@ export default function Home() {
   const [processList, setProcessList] = useState([0]);
   const processes = useSelector((state) => state.processes);
   const [history, setHistory] = useState([]);
-
-  useEffect(() => {
-    console.log(runSimulation);
-  }, [runSimulation]);
 
   const colors = [
     "#F9F871",
@@ -81,8 +78,8 @@ export default function Home() {
 
     // run simulator function @params: readyQueues @return: history
     const history = simulate(readyQueues);
-    setHistory(history);
-  };
+      setHistory(history);
+    };
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-[#E5CAFB] to-[#8A87C1]">
@@ -180,14 +177,14 @@ export default function Home() {
         <div className="text-5xl font-black" id="Visualization">
           Visualization
         </div>
-        <div className="text-base w-96 pt-2">This is how MLFQ works!</div>
-        <div className="mt-5">Current Time</div>
+        <div className="text-base w-96 pt-2 mb-[3%]">This is how MLFQ works!</div>
         <div className="my-[2%]">
           <div className="flex ">
             <img src={"priorityArrow.png"} className="h-[41vh] " />
-            <Table processNum={num} />
+            <Table processNum={num} history = {history}/>
           </div>
           <ProcessInfo />
+          <CPU history = {history}/>
         </div>
       </div>
     </div>
