@@ -18,10 +18,6 @@ export default function Home() {
   const processes = useSelector((state) => state.processes);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    console.log(runSimulation);
-  }, [runSimulation]);
-
   const colors = [
     "#F9F871",
     "#F08A5D",
@@ -78,6 +74,8 @@ export default function Home() {
         processId: process.id,
       });
     });
+    // Sort readyQueues by arrival time
+    readyQueues.sort((a, b) => a.arrivalTime - b.arrivalTime);
 
     // run simulator function @params: readyQueues @return: history
     // sort the readyQueues by arrival time
