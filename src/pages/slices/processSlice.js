@@ -6,12 +6,17 @@ const initialState = [
       color: "#FF0000",
       arrivalTime:0,
       cpuBurst: 0,
-      ioBurst:0,
-      totalTime: 0,
+      ioBurst: 0,
       cpuVariance: 0,
-      currentTime: 0,
-      priorityLevel: 0,
-    }
+      ioVariance: 0,
+      
+      totalTime: 0,
+      isFinished: false,
+      isRunnable: false,
+      unBlockedAt: 0,
+      remainingCPUTime: 0,
+      priority:0,
+    },
 ];
 
 const processSlice = createSlice({
@@ -28,51 +33,59 @@ const processSlice = createSlice({
         }
       },
       setcpuBurst: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              process.cpuBurst = action.payload.cpuBurst;
-          }
+        const process = state.find(p => p.id === action.payload.id);
+        if (process) {
+          process.cpuBurst = action.payload.cpuBurst;
+        }
       },
       setioBurst: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              process.ioBurst = action.payload.ioBurst;
-          }
-      },
-      setStartTime: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              process.startTime = action.payload.startTime;
-          }
-      },
-      setTotalTime: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              process.totalTime = action.payload.totalTime;
-          }
+        const process = state.find(p => p.id === action.payload.id);
+        if (process) {
+          process.ioBurst = action.payload.ioBurst;
+        }
       },
       setcpuVariance: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              process.cpuVariance = action.payload.cpuVariance;
-          }
-      },
-      setCurrentTime:(state,action) => {
-            const process = state.find(p => p.id === action.payload.id);
-            if (process) {
-                process.currentTime = action.payload.currentTime;
-            }
-        },
-      getProcess: (state, action) => {
-          const process = state.find(p => p.id === action.payload.id);
-          if (process) {
-              return process;
-          }
-      },
-        getColor : (state, processId) => {
         const process = state.find(p => p.id === action.payload.id);
-        return process.color;
-      }
+        if (process) {
+          process.cpuVariance = action.payload.cpuVariance;
+        }
+      },
+      setioVariance: (state, action) => {
+        const process = state.find(p => p.id === action.payload.id);
+        if (process) {
+          process.ioVariance = action.payload.ioVariance;
+        }
+      },
+      setTotalTime: (state, action) => {
+        const process = state.find((p) => p.id === action.payload.id);
+        if (process) {
+          process.totalTime = action.payload.totalTime;
+        }
+      },
+      setIsFinished: (state, action) => {
+        const process = state.find((p) => p.id === action.payload.id);
+        if (process) {
+          process.isFinished = action.payload.isFinished;
+        }
+      },
+      setIsRunnable: (state, action) => {
+        const process = state.find((p) => p.id === action.payload.id);
+        if (process) {
+          process.isRunnable = action.payload.isRunnable;
+        }
+      },
+      setUnBlockedAt: (state, action) => {
+        const process = state.find((p) => p.id === action.payload.id);
+        if (process) {
+          process.unBlockedAt = action.payload.unBlockedAt;
+        }
+      },
+      setRemainingCPUTime: (state, action) => {
+        const process = state.find((p) => p.id === action.payload.id);
+        if (process) {
+          process.remainingCPUTime = action.payload.remainingCPUTime;
+        }
+      },
     },
   });
 
@@ -86,6 +99,7 @@ export const {
   setStartTime,
   setTotalTime,
   setcpuVariance,
+  setioVariance,
   setCurrentTime,
   getProcess,
   getColor
