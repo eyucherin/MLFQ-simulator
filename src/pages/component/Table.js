@@ -63,7 +63,7 @@ const Table = (props) => {
     setQueue3(q3);
     setQueue4(q4);
     setQueue5(q5);
-  }, [props]);
+  }, [props, processes]);
 
   return (
     <div class="ml-[4%] mb-[4%] w-[100%]">
