@@ -4,13 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import UserInput from "./component/UserInput";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {
-  addProcess,
-  getProcessState,
-  getColor,
-  setcpuBurst,
-  setCurrentTime,
-} from "./slices/processSlice";
+import { addProcess } from "./slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
 
@@ -50,23 +44,30 @@ export default function Home() {
       setProcessList(
         processList.concat(<UserInput key={num} name={num + 1} />)
       );
-
-      const newProcess = {
-        id: num + 1,
-        color: colors[num - 1],
-        arrivalTime: 0,
-        cpuBurst: 0,
-        ioBurst: 0,
-        totalTime: 0,
-        cpuVariance: 0,
-        currentTime: 0,
-        priorityLevel: 0,
-      };
-      dispatch(addProcess(newProcess));
     }
   };
 
-  const handleSimulateBtn = () => {};
+  const handleSimulateBtn = () => {
+    // loop through processList and add each process to the store
+    processList.forEach((process, id) => {
+      dispatch(
+        addProcess({
+          id: id + 1,
+          color: colors[id - 1],
+          cpuBurst: parseInt(process.cpu_burst),
+          ioBurst: parseInt(process.io_burst),
+          cpuVariance: parseInt(process.cpu_variance),
+          ioVariance: parseInt(process.io_variance),
+          totalTime: 0,
+          isFinished: false,
+          isRunnable: false,
+          unBlockedAt: 0,
+          remainingCPUTime: 0,
+        })
+      );
+      // add to ready queue (arrivalTime, processId)
+    });
+  };
 
   return (
     <div className="flex flex-col bg-gradient-to-br from-[#E5CAFB] to-[#8A87C1]">
