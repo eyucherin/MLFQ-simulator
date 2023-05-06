@@ -10,7 +10,6 @@ const initialState = [
       cpuVariance: 0,
       ioVariance: 0,
       
-  
       totalTime: 0,
       isFinished: false,
       isRunnable: false,

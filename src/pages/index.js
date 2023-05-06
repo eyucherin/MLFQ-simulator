@@ -47,17 +47,11 @@ export default function Home() {
     }
   };
 
-  // useEffect(() => {
-  //   for(let i=0;i<processList.length;i++){
-  //     processList[i] = <UserInput key={i} name={i+1} canRun={runSimulation} />
-  //   }
-  // },[runSimulation]);
 
   const handlePlusBtnClick = () => {
     if (num < 10 && !runSimulation){
       setNum(num+1);
       setProcessList(processList.concat(num));
-      // setProcessList(processList.concat(<UserInput key={num} name={num+1} canRun={runSimulation} />));
       const newProcess ={
         id: num+1,
         color: colors[num-1],
@@ -142,8 +136,6 @@ export default function Home() {
                 IO Variance
               </div>
             </div>
-            {/* <UserInput key={0} name={1} canRun={runSimulation} />
-            {processList} */}
             {processList.map((process) => (
               <UserInput key={process} name={process+1} canRun={runSimulation} />
             ))}
