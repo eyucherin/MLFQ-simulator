@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import UserInput from "./component/UserInput";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addProcess } from "./slices/processSlice";
+import { addProcess } from "../slices/processSlice";
 import Table from "./component/Table";
 import ProcessInfo from "./component/ProcessInfo";
 import { simulate } from "@/simulator";

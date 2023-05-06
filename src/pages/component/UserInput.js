@@ -7,7 +7,7 @@ import {
   setTotalTime,
   setcpuVariance,
   setioVariance,
-} from "../slices/processSlice";
+} from "../../slices/processSlice";
 
 const UserInput = (props) => {
   const dispatch = useDispatch();
