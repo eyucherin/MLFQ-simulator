@@ -1,26 +1,13 @@
-## Getting Started
+# MLFQ simulator ![Next.js](https://img.shields.io/badge/-Next.js-000?&logo=JavaScript) ![Tailwind](https://img.shields.io/badge/-Tailwind-000?)
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-# MLFQ simulator
+### 🚧 Projects Under Construction 👷‍♀️
 COMSC-322 Operating Systems
 - Professor: James McCauley
 - Students: Elizabeth Yu, Joni Park
 - Website: https://mlfq-simulator-7dwamz0tg-eyucherin.vercel.app/
 
-<img width="680" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="680" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
 
+<img width="680" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="680" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
 
 ## Introduction
 For our project, we decided to implement a web simulator on MLFQ scheduling. Throughout the semester, we learned about a couple of scheduling methods including SJF, and RR, which offer some benefits but also have certain drawbacks. Unlike many other OS schedulers, MLFQ scheduling, also known as Multilevel feedback queue, not only optimizes Average Turnaround Time and Average Response Time but also prioritizes IO-bound processes over CPU-bound processes. To further examine this scheduler, we decided to use a couple of front-end frameworks and libraries including Next.js, tailwind.css, and redux to create our web interface, which can be found here. 
@@ -67,3 +54,18 @@ The simulation ends when all processes have been executed or the maximum simulat
 - **Input validation**: Validate input to ensure that user inputs, such as blocking empty inputs, and validating the sum of total time of all the processes is shorter than our maximum simulation time. Additionally, we can verify that IO and CPU burst times are greater than their respective variances.
 
 ### Please let us know if there is any feedback or suggestions!
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
