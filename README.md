@@ -7,7 +7,7 @@ https://mlfq-simulator-7dwamz0tg-eyucherin.vercel.app/
 - Professor: `James McCauley`
 - `Elizabeth Yu`, `Joni Park`
 
-<img width="680" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="680" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
+<img width="720" alt="Screenshot 2023-05-08 at 2 36 28 PM" src="https://user-images.githubusercontent.com/89917595/236904187-b1ef1bc0-060a-4ce8-a0e0-90e7b6eb2ef6.png"> <img width="720" alt="Screenshot 2023-05-08 at 2 36 23 PM" src="https://user-images.githubusercontent.com/89917595/236904233-72c258ca-867d-4f10-ab3a-d4f3f1b4efe6.png">
 
 ## Introduction: Multi Level Feedback Queue scheduling
 For our project, we decided to implement a web simulator on **MLFQ scheduling**. 
