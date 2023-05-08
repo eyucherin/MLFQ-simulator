@@ -53,6 +53,8 @@ The core of the simulation takes place in a while loop that continues until eith
 The simulation ends when all processes have been executed or the maximum simulation time has been reached, and the function returns the history of the simulation, which would be the data for drawing processes execution on the queue tables.
 
 ## Challenges & key takeaways
+![final_1](https://user-images.githubusercontent.com/89917595/236894136-fade2a70-5257-4e9f-8618-c1a33bbee22b.jpg)
+
 - In the beginning, we did not have the right idea of the scheduling algorithm. We were set on the fact that burst referred to the CPU and IO burst times. Initially, our user inputs only consisted of arrival time, total burst, and total time. With the help of Professor McCauley, we were able to understand the scheduling method more in-depth. 
 - Even after understanding the whole concept of MLFQ, we were debating on what to include for our user inputs. Some questions we asked were, “Should we include the arrival time?”, or “Should we have a separate variance for the IO and CPU?”. After countless discussions, we figured it would make our simulator more interesting if we allow the users to initiate these variables so even if these inputs made the implementation harder, it definitely added more functionality to the scheduler. 
 - We also struggled with the deployment process. There were a couple of errors that appeared during the process which required us to go back to the code and fix them. After revisiting the code a couple of times we were able to get the deployment process working.  
