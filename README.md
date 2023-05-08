@@ -19,7 +19,7 @@ COMSC-322 Operating Systems
 - Students: Elizabeth Yu, Joni Park
 - Website: https://mlfq-simulator-7dwamz0tg-eyucherin.vercel.app/
 
-<img width="480" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="480" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
+<img width="680" alt="Screenshot 2023-05-06 at 6 42 11 PM" src="https://user-images.githubusercontent.com/89917595/236649582-cb2d8f97-5dae-4cb8-8fd4-f3b50a2f7e2b.png"><img width="680" alt="Screenshot 2023-05-06 at 6 42 16 PM" src="https://user-images.githubusercontent.com/89917595/236649584-e8ddac89-f5d9-4d5f-beb0-fb1b42d0fef0.png">
 
 
 ## Introduction
